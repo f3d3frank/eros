@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EROS — Curated Private Events</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="EROS crafts extraordinary private experiences for the discerning few. Sophistication. Desire. Discretion.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            onyx:    '#0A0A0A',
+            surface: '#131313',
+            elev:    '#1B1B1B',
+            float:   '#242424',
+            gold:    { DEFAULT: '#C9A87C', hi: '#E2CC9A', deep: '#8B6C42', pale: '#F0E4CC' },
+            warm:    { DEFAULT: '#EEE8DE', muted: '#8A7A68', dim: '#4A4038' },
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body:    ['"EB Garamond"', 'Georgia', 'serif'],
+            caps:    ['Cinzel', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #C9A87C #0A0A0A;
+      cursor: none;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0A0A0A; }
+    ::-webkit-scrollbar-thumb { background: #C9A87C; }
+    body {
+      background: #0A0A0A;
+      color: #EEE8DE;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.75;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    a, button { cursor: none; }
+
+    /* ── VARIABLES ──────────────────────────────────────────────── */
+    :root {
+      --onyx:       #0A0A0A;
+      --obsidian:   #0E0E0E;
+      --surface:    #131313;
+      --elev:       #1B1B1B;
+      --float:      #242424;
+      --gold:       #C9A87C;
+      --gold-hi:    #E2CC9A;
+      --gold-deep:  #8B6C42;
+      --gold-pale:  #F0E4CC;
+      --gold-glow:  rgba(201,168,124,0.22);
+      --text:       #EEE8DE;
+      --muted:      #8A7A68;
+      --dim:        #4A4038;
+      --border:     rgba(201,168,124,0.15);
+      --border-hi:  rgba(201,168,124,0.45);
+      --sp-sec:     clamp(5.5rem, 11vw, 10rem);
+      --sp-h:       clamp(2rem, 6vw, 5.5rem);
+      --fs-display: clamp(3rem, 7vw, 6.5rem);
+      --fs-h2:      clamp(2.2rem, 4.5vw, 4rem);
+      --fs-h3:      clamp(1.3rem, 2vw, 1.7rem);
+      --fs-body:    clamp(1rem, 1.2vw, 1.15rem);
+      --fs-label:   0.7rem;
+    }
+
+    /* ── KEYFRAMES ──────────────────────────────────────────────── */
+    @keyframes gold-shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+    @keyframes logo-glow {
+      0%, 100% { filter: drop-shadow(0 0 16px rgba(201,168,124,0.5)) drop-shadow(0 0 40px rgba(201,168,124,0.2)); }
+      50%       { filter: drop-shadow(0 0 28px rgba(201,168,124,0.8)) drop-shadow(0 0 60px rgba(201,168,124,0.35)); }
+    }
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes reveal-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes line-draw {
+      from { transform: scaleX(0); transform-origin: left; }
+      to   { transform: scaleX(1); transform-origin: left; }
+    }
+    @keyframes grain-drift {
+      0%,100% { transform: translate(0,0); }
+      25%     { transform: translate(-1%,-0.5%); }
+      50%     { transform: translate(0.5%,-1%); }
+      75%     { transform: translate(1%,0.5%); }
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.4; transform: translateY(0); }
+      50%       { opacity: 0.9; transform: translateY(8px); }
+    }
+    @keyframes nav-in {
+      from { opacity: 0; transform: translateY(-100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes cursor-scale {
+      to { transform: translate(-50%,-50%) scale(1.8); opacity: 0.5; }
+    }
+    @keyframes shimmer-line {
+      from { background-position: -200% center; }
+      to   { background-position: 200% center; }
+    }
+    @keyframes service-open {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes hero-clip {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0% 0 0); }
+    }
+
+    /* ── GRAIN ──────────────────────────────────────────────────── */
+    .grain {
+      position: absolute; inset: -30%;
+      width: 160%; height: 160%;
+      pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.032;
+      animation: grain-drift 9s steps(1) infinite;
+    }
+
+    /* ── AOS ────────────────────────────────────────────────────── */
+    .aos { opacity: 0; }
+    .aos.visible {
+      animation: reveal-up 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .aos-fade.visible {
+      animation: reveal-fade 1.1s ease forwards;
+    }
+
+    /* ── ORNAMENT ───────────────────────────────────────────────── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 auto;
+    }
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .ornament::after {
+      background: linear-gradient(to left, transparent, var(--gold));
+    }
+    .ornament-diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    /* ── LABEL ──────────────────────────────────────────────────── */
+    .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── CUSTOM CURSOR ──────────────────────────────────────────── */
+    #cursor-ring {
+      position: fixed;
+      width: 34px; height: 34px;
+      border: 1px solid rgba(201,168,124,0.55);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  height 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  border-color 0.3s ease,
+                  opacity 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    #cursor-dot {
+      position: fixed;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%,-50%);
+    }
+    body.cursor-hover #cursor-ring {
+      width: 56px; height: 56px;
+      border-color: rgba(201,168,124,0.85);
+    }
+    @media (hover: none) {
+      #cursor-ring, #cursor-dot { display: none; }
+      html, body, a, button { cursor: auto; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(1.5rem,5vw,4rem);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.0);
+      transition: background 0.5s ease, border-bottom 0.5s ease;
+      animation: nav-in 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;
+    }
+    #nav.scrolled {
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 38px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.92;
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.1rem;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(238,232,222,0.55);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0.9rem; right: 0.9rem;
+      height: 0.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .nav-enquire {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 0.55rem 1.4rem;
+      border: 0.5px solid var(--border-hi);
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .nav-enquire:hover {
+      background: var(--gold);
+      color: var(--onyx);
+      border-color: var(--gold);
+    }
+    .nav-enquire:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .nav-ham {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      padding: 0.5rem;
+    }
+    .nav-ham span {
+      display: block;
+      width: 22px; height: 0.5px;
+      background: var(--muted);
+      transition: opacity 0.2s ease;
+    }
+    .nav-ham:hover span { opacity: 0.5; }
+
+    @media (max-width: 820px) {
+      .nav-links, .nav-enquire { display: none; }
+      .nav-ham { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: rgba(10,10,10,0.98);
+        border-bottom: 0.5px solid var(--border);
+        padding: 2rem 0;
+        gap: 0;
+      }
+      .nav-links.open a { padding: 0.8rem 2rem; font-size: 0.7rem; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .hero-veil-1 {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        160deg,
+        rgba(10,10,10,0.75) 0%,
+        rgba(10,10,10,0.55) 40%,
+        rgba(10,10,10,0.80) 100%
+      );
+    }
+    .hero-veil-2 {
+      position: absolute; inset: 0; z-index: 2;
+      background:
+        radial-gradient(ellipse 55% 60% at 50% 45%, rgba(201,168,124,0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 15% 80%, rgba(201,168,124,0.05) 0%, transparent 50%);
+    }
+    .hero-grain { position: absolute; inset: 0; z-index: 3; }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 72px clamp(1.5rem,5vw,4rem) 0;
+    }
+    .hero-logo {
+      width: clamp(220px, 32vw, 440px);
+      height: auto;
+      mix-blend-mode: screen;
+      animation: logo-glow 4.5s ease-in-out infinite, reveal-fade 1.4s ease both 0.6s;
+    }
+    .hero-ornament {
+      width: clamp(120px, 20vw, 260px);
+      margin: 1.8rem auto 1.6rem;
+      animation: reveal-fade 1s ease both 1.2s;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+      color: rgba(238,232,222,0.65);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+      animation: reveal-up 1s cubic-bezier(0.16,1,0.3,1) both 1.4s;
+    }
+    .hero-tagline .sep {
+      display: inline-block;
+      margin: 0 0.75em;
+      color: var(--gold);
+      opacity: 0.5;
+      font-style: normal;
+    }
+    .hero-pillars {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      animation: reveal-fade 1s ease both 1.8s;
+    }
+    .hero-pillar {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      opacity: 0.65;
+      text-transform: uppercase;
+    }
+    .hero-pillar-dot {
+      width: 3px; height: 3px;
+      background: var(--gold);
+      opacity: 0.4;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      animation: reveal-fade 1s ease both 2.2s;
+      text-decoration: none;
+    }
+    .hero-scroll-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 0.5px; height: 38px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scroll-pulse 2.4s ease-in-out infinite;
+    }
+
+    /* ════════════════════════════════════════════════════
+       MANIFESTO
+    ═══════════════════════════════════════════════════════ */
+    #manifesto {
+      background: var(--surface);
+      padding: var(--sp-sec) var(--sp-h);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    #manifesto::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,124,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .manifesto-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.9rem, 4.5vw, 3.8rem);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 900px;
+      margin: 2.5rem auto;
+    }
+    .manifesto-quote em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-hi), var(--gold));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gold-shimmer 5s ease-in-out infinite;
+    }
+    .manifesto-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    .manifesto-pillars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 1rem;
+    }
+    .manifesto-pillar {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ════════════════════════════════════════════════════
+       NOSOTROS / THE HOUSE
+    ═══════════════════════════════════════════════════════ */
+    #nosotros {
+      background: var(--onyx);
+      padding: var(--sp-sec) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .nosotros-img-col {
+      position: relative;
+      overflow: hidden;
+    }
+    .nosotros-img-col img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(0.6) contrast(1.1);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+    }
+    .nosotros-img-col:hover img {
+      transform: scale(1.04);
+      filter: saturate(0.75) contrast(1.05);
+    }
+    .nosotros-img-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, transparent 60%, var(--onyx) 100%),
+        linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 40%);
+    }
+    .nosotros-text-col {
+      padding: clamp(3rem,6vw,7rem) clamp(2.5rem,5vw,6rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .nosotros-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+    .nosotros-heading em {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(120deg, var(--gold-deep), var(--gold), var(--gold-hi));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nosotros-body {
+      font-size: var(--fs-body);
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .nosotros-body-en {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--dim);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .nosotros-rule {
+      width: 60px;
+      height: 0.5px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      border: none;
+      margin-bottom: 2.5rem;
+    }
+    .nosotros-stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .stat-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .stat-name em {
+      font-style: normal;
+      display: block;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      .nosotros-grid { grid-template-columns: 1fr; }
+      .nosotros-img-col img { min-height: 380px; }
+      .nosotros-img-overlay { background: linear-gradient(to top, var(--onyx) 0%, transparent 50%); }
+    }
+
+    /* ════════════════════════════════════════════════════
+       SERVICIOS — EDITORIAL LIST
+    ═══════════════════════════════════════════════════════ */
+    #servicios {
+      background: var(--surface);
+      padding: var(--sp-sec) var(--sp-h);
+      position: relative;
+      overflow: hidden;
+    }
+    #servicios::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 70% at 90% 30%, rgba(201,168,124,0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .servicios-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: clamp(3rem,6vw,5.5rem);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .servicios-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .servicios-heading em {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(120deg, var(--gold-deep), var(--gold), var(--gold-hi));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .servicios-intro {
+      font-size: var(--fs-body);
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .servicios-intro em {
+      display: block;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dim);
+      margin-top: 0.5rem;
+    }
+
+    /* Service list */
+    .service-list {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-item {
+      border-top: 0.5px solid var(--border);
+      cursor: none;
+    }
+    .service-item:last-child { border-bottom: 0.5px solid var(--border); }
+    .service-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto auto 32px;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.6rem 0;
+      transition: padding 0.3s ease;
+    }
+    .service-item:hover .service-row { padding-left: 0.5rem; }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      opacity: 0.6;
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      transition: color 0.25s ease;
+    }
+    .service-item:hover .service-name { color: var(--gold); }
+    .service-en {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+      text-align: right;
+    }
+    .service-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      padding: 0.3rem 0.7rem;
+      border: 0.5px solid var(--border-hi);
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .service-arrow {
+      font-size: 1.1rem;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .service-item:hover .service-arrow,
+    .service-item.open .service-arrow {
+      opacity: 0.8;
+      transform: translateX(0);
+    }
+    .service-item.open .service-arrow {
+      transform: rotate(90deg) translateY(-2px);
+    }
+    .service-expand {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .service-item.open .service-expand { max-height: 280px; }
+    .service-expand-inner {
+      padding: 0 0 2rem calc(56px + 1.5rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      animation: service-open 0.4s ease;
+    }
+    .service-desc {
+      font-size: var(--fs-body);
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .service-desc-en {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+    .service-cta {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: letter-spacing 0.25s ease, opacity 0.25s ease;
+    }
+    .service-cta:hover { letter-spacing: 0.35em; }
+
+    @media (max-width: 820px) {
+      .servicios-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .service-row { grid-template-columns: 40px 1fr 28px; }
+      .service-en, .service-badge { display: none; }
+      .service-expand-inner { grid-template-columns: 1fr; padding-left: calc(40px + 1.5rem); }
+    }
+
+    /* ════════════════════════════════════════════════════
+       QUÍMICA / PRIVÉ
+    ═══════════════════════════════════════════════════════ */
+    #quimica {
+      background: var(--onyx);
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #quimica::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201,168,124,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Lock */
+    #lock {
+      position: absolute; inset: 0; z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.97);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .lock-panel {
+      width: 90%;
+      max-width: 480px;
+      text-align: center;
+      padding: clamp(3rem,6vw,5rem) clamp(2rem,5vw,4.5rem);
+      border: 0.5px solid var(--border);
+      position: relative;
+    }
+    .lock-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 0.5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .lock-logo {
+      width: 140px; height: auto;
+      mix-blend-mode: screen;
+      margin: 0 auto 1.75rem;
+      opacity: 0.85;
+      animation: logo-glow 4.5s ease-in-out infinite;
+    }
+    .lock-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .lock-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+    }
+    .lock-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+    }
+    .lock-sub span { display: block; }
+    .lock-input-row {
+      display: flex;
+      border: 0.5px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+    .lock-input-row:focus-within { border-color: var(--gold); }
+    .lock-input-row.shake { animation: shake-x 0.5s ease; }
+    @keyframes shake-x {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-9px); }
+      40%     { transform: translateX(8px); }
+      60%     { transform: translateX(-6px); }
+      80%     { transform: translateX(4px); }
+    }
+    #pass-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0.85rem 1.1rem;
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+    #pass-input::placeholder { color: var(--dim); font-style: italic; }
+    #pass-btn {
+      background: transparent;
+      border: none;
+      border-left: 0.5px solid var(--border);
+      padding: 0 1.2rem;
+      color: var(--gold);
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    #pass-btn:hover { background: rgba(201,168,124,0.1); }
+    #pass-error {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      display: none;
+    }
+    .lock-hint {
+      margin-top: 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    /* Chemistry content */
+    #chem-content {
+      display: none;
+      opacity: 0;
+      width: 100%;
+      padding: var(--sp-sec) var(--sp-h);
+      position: relative;
+      z-index: 5;
+      transition: opacity 0.9s ease;
+    }
+    .chem-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .chem-heading em {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(120deg, var(--gold-deep), var(--gold), var(--gold-hi));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .chem-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2px;
+      margin-top: 4rem;
+      background: var(--border);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chem-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      animation: reveal-up 0.7s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .chem-card:nth-child(1) { animation-delay: 0.1s; }
+    .chem-card:nth-child(2) { animation-delay: 0.25s; }
+    .chem-card:nth-child(3) { animation-delay: 0.4s; }
+    .chem-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border-hi);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .chem-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .chem-title-en {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .chem-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 0.4rem;
+    }
+    .chem-body-en {
+      font-style: italic;
+      font-size: 0.83rem;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .chem-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       CONTACTO / ENQUIRIES
+    ═══════════════════════════════════════════════════════ */
+    #contacto {
+      background: var(--surface);
+      padding: var(--sp-sec) var(--sp-h);
+      position: relative;
+      overflow: hidden;
+    }
+    #contacto::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 90%, rgba(201,168,124,0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: clamp(4rem,8vw,9rem);
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+    }
+    .contact-heading em {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(120deg, var(--gold-deep), var(--gold), var(--gold-hi));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-body { font-size: var(--fs-body); color: var(--muted); line-height: 1.8; margin-bottom: 0.5rem; }
+    .contact-body-en { font-style: italic; font-size: 0.9rem; color: var(--dim); line-height: 1.7; margin-bottom: 2.5rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-icon {
+      width: 34px; height: 34px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 0.5px solid var(--border);
+      color: var(--gold);
+    }
+    .contact-item-text { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+    .contact-item-text strong {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .contact-note {
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      border-left: 0.5px solid var(--gold);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--dim);
+      line-height: 1.7;
+      background: rgba(201,168,124,0.03);
+    }
+
+    /* Form */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .fgroup { margin-bottom: 1rem; }
+    .fgroup label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 0.5rem;
+    }
+    .fgroup input,
+    .fgroup select,
+    .fgroup textarea {
+      width: 100%;
+      background: var(--elev);
+      border: 0.5px solid var(--border);
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .fgroup select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9A87C' opacity='0.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .fgroup select option { background: #1B1B1B; }
+    .fgroup input:focus,
+    .fgroup select:focus,
+    .fgroup textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,124,0.07);
+    }
+    .fgroup input::placeholder,
+    .fgroup textarea::placeholder { color: var(--dim); font-style: italic; }
+    .fgroup textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      padding: 0.95rem;
+      background: transparent;
+      border: 0.5px solid var(--border-hi);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+    }
+    .form-submit:hover {
+      background: var(--gold);
+      color: var(--onyx);
+      border-color: var(--gold);
+    }
+    .form-submit:active { transform: scale(0.99); }
+    .form-submit:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+    .form-submit:disabled { opacity: 0.4; }
+    #form-ok {
+      margin-top: 1rem;
+      padding: 0.9rem 1.1rem;
+      border: 0.5px solid var(--border);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.6;
+      display: none;
+      animation: reveal-fade 0.5s ease;
+    }
+
+    @media (max-width: 900px) {
+      .contacto-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    footer {
+      background: var(--onyx);
+      padding: 2.75rem clamp(1.5rem,5vw,4rem);
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+    }
+    .footer-logo img {
+      height: 30px; width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.6;
+      transition: opacity 0.25s ease;
+    }
+    .footer-logo:hover img { opacity: 0.9; }
+    .footer-nav {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-decoration: none;
+      padding: 0.25rem 0.85rem;
+      transition: color 0.2s ease;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+    .footer-copy strong {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-top: 0.2rem;
+    }
+    .footer-rule {
+      width: 100%;
+      height: 0.5px;
+      background: linear-gradient(90deg, transparent, var(--border-hi) 30%, var(--border-hi) 70%, transparent);
+      border: none;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-copy { text-align: left; }
+    }
+
+    /* ── GOLD SECTION DIVIDER ───────────────────────────────────── */
+    .sec-div {
+      width: 100%;
+      height: 0.5px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,124,0.2), transparent);
+    }
+
+    /* ── BILINGUAL SYSTEM ───────────────────────────────────────── */
+    html:not([data-lang="es"]) .t-es { display: none !important; }
+    html[data-lang="es"] .t-en { display: none !important; }
+
+    #lang-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.57rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 0.5px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      margin-left: 0.6rem;
+      flex-shrink: 0;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    #lang-btn:hover { color: var(--gold); border-color: var(--gold-deep); }
+    #lang-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+    #lang-btn .lang-active { color: var(--gold); }
+    #lang-btn .lang-sep { opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ════════ NAV ════════ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="EROS — home">
+      <img src="logo eros.png" alt="EROS">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#nosotros"><span class="t-en">The House</span><span class="t-es">La Maison</span></a></li>
+      <li><a href="#servicios"><span class="t-en">Services</span><span class="t-es">Servicios</span></a></li>
+      <li><a href="#quimica">Privé</a></li>
+      <li><a href="#contacto"><span class="t-en">Enquiries</span><span class="t-es">Reservas</span></a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0;">
+      <button id="lang-btn" aria-label="Switch language">
+        <span id="lang-en-lbl" class="lang-active">EN</span>
+        <span class="lang-sep">·</span>
+        <span id="lang-es-lbl">ES</span>
+      </button>
+      <a href="#contacto" class="nav-enquire"><span class="t-en">Enquire</span><span class="t-es">Reservar</span></a>
+    </div>
+    <button class="nav-ham" id="nav-ham" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ════════ HERO ════════ -->
+  <section id="hero" aria-label="EROS — Hero">
+    <video id="hero-video" autoplay muted loop playsinline>
+      <source src="puti.mp4" type="video/mp4">
+    </video>
+    <div class="hero-veil-1" aria-hidden="true"></div>
+    <div class="hero-veil-2" aria-hidden="true"></div>
+    <div class="hero-grain grain" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <img src="logo eros.png" alt="EROS" class="hero-logo">
+
+      <div class="hero-ornament">
+        <div class="ornament">
+          <div class="ornament-diamond" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <p class="hero-tagline">
+        <span class="t-en">Where extraordinary moments are given form.</span>
+        <span class="t-es">Donde los momentos extraordinarios toman forma.</span>
+      </p>
+
+      <div class="hero-pillars" aria-label="EROS values">
+        <span class="hero-pillar">Sophistication</span>
+        <div class="hero-pillar-dot" aria-hidden="true"></div>
+        <span class="hero-pillar">Desire</span>
+        <div class="hero-pillar-dot" aria-hidden="true"></div>
+        <span class="hero-pillar">Discretion</span>
+      </div>
+    </div>
+
+    <a href="#nosotros" class="hero-scroll" aria-label="Discover more">
+      <span class="hero-scroll-label t-en">Discover</span>
+      <span class="hero-scroll-label t-es">Descubrir</span>
+      <div class="hero-scroll-line" aria-hidden="true"></div>
+    </a>
+  </section>
+
+  <div class="sec-div" aria-hidden="true"></div>
+
+  <!-- ════════ MANIFESTO ════════ -->
+  <section id="manifesto" aria-label="Manifiesto EROS">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="ornament aos" style="max-width:200px;">
+      <div class="ornament-diamond" aria-hidden="true"></div>
+    </div>
+    <blockquote class="manifesto-quote aos" style="animation-delay:0.1s">
+      <span class="t-en">"You <em>set the limits.</em><br>We deliver the extraordinary."</span>
+      <span class="t-es">"Los <em>límites</em> los pones tú.<br>Nosotros hacemos lo extraordinario posible."</span>
+    </blockquote>
+    <p class="manifesto-sub aos t-en" style="animation-delay:0.2s">
+      Every EROS experience is built entirely around you. Your vision, your pace, your desires — we shape each detail to match. There are no templates here, only singular moments crafted for the few who demand more.
+    </p>
+    <p class="manifesto-sub aos t-es" style="animation-delay:0.2s">
+      Cada experiencia EROS se construye enteramente a tu medida. Tu visión, tu ritmo, tus deseos — moldeamos cada detalle para que encaje. Aquí no hay plantillas, solo momentos únicos diseñados para quienes exigen más.
+    </p>
+    <div class="manifesto-pillars aos" style="animation-delay:0.3s">
+      <span class="manifesto-pillar">Sophistication</span>
+      <div class="ornament-diamond" style="width:4px;height:4px;opacity:0.4;" aria-hidden="true"></div>
+      <span class="manifesto-pillar">Desire</span>
+      <div class="ornament-diamond" style="width:4px;height:4px;opacity:0.4;" aria-hidden="true"></div>
+      <span class="manifesto-pillar">Discretion</span>
+    </div>
+  </section>
+
+  <div class="sec-div" aria-hidden="true"></div>
+
+  <!-- ════════ NOSOTROS ════════ -->
+  <section id="nosotros" aria-labelledby="nosotros-h">
+    <div class="nosotros-grid">
+      <div class="nosotros-img-col">
+        <img
+          src="Ultra-realistic_Latina_model_202604122357.png"
+          alt="Ambiente EROS — velada privada"
+          loading="lazy"
+        >
+        <div class="nosotros-img-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="nosotros-text-col">
+        <span class="label aos t-en">The House</span>
+        <span class="label aos t-es">La Maison</span>
+        <h2 id="nosotros-h" class="nosotros-heading aos" style="animation-delay:0.1s">
+          <span class="t-en">The Art of the<br><em>Truly Private</em></span>
+          <span class="t-es">El Arte de lo<br><em>Verdaderamente Privado</em></span>
+        </h2>
+        <p class="nosotros-body aos t-es" style="animation-delay:0.2s">
+          EROS nació de la convicción de que los mejores momentos son los que se diseñan con intención. Somos una casa de event planning de alto nivel, especializada en experiencias privadas para grupos exclusivos donde el lujo, la sensualidad y la discreción son los únicos códigos que rigen.
+        </p>
+        <p class="nosotros-body aos t-en" style="animation-delay:0.2s">
+          EROS was born from the conviction that the finest moments are those designed with intention. We are a high-end event planning house specializing in private experiences where luxury, sensuality, and discretion are the only governing codes.
+        </p>
+        <hr class="nosotros-rule aos" style="animation-delay:0.3s" aria-hidden="true">
+        <div class="nosotros-stats">
+          <div class="aos" style="animation-delay:0.35s">
+            <div class="stat-num">+8</div>
+            <div class="stat-name t-en">Years</div>
+            <div class="stat-name t-es">Años</div>
+          </div>
+          <div class="aos" style="animation-delay:0.42s">
+            <div class="stat-num">+200</div>
+            <div class="stat-name t-en">Private Events</div>
+            <div class="stat-name t-es">Veladas Privadas</div>
+          </div>
+          <div class="aos" style="animation-delay:0.49s">
+            <div class="stat-num">+500</div>
+            <div class="stat-name t-en">Members</div>
+            <div class="stat-name t-es">Miembros</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-div" aria-hidden="true"></div>
+
+  <!-- ════════ SERVICIOS ════════ -->
+  <section id="servicios" aria-labelledby="servicios-h">
+    <div class="servicios-header">
+      <div>
+        <span class="label aos t-en">Curated Experiences</span>
+        <span class="label aos t-es">Servicios</span>
+        <h2 id="servicios-h" class="servicios-heading aos" style="animation-delay:0.1s">
+          <span class="t-en">Bespoke<br><em>Experiences</em></span>
+          <span class="t-es">Experiencias<br><em>a Medida</em></span>
+        </h2>
+      </div>
+      <p class="servicios-intro aos t-en" style="animation-delay:0.15s">
+        Every EROS experience is unique and unrepeatable. We select every detail — the space, the guests, the atmosphere — with the precision of a master goldsmith working gold.
+      </p>
+      <p class="servicios-intro aos t-es" style="animation-delay:0.15s">
+        Cada velada EROS es única e irrepetible. Seleccionamos cada detalle — el espacio, los invitados, el ambiente — con la misma precisión con la que un maestro orfebre trabaja el oro.
+      </p>
+    </div>
+
+    <div class="service-list" role="list">
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.05s">
+        <div class="service-row">
+          <span class="service-num">01</span>
+          <span class="service-name t-es">Villas Privadas</span>
+          <span class="service-en t-en">Private Estates</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Residencias de alto standing reservadas en su totalidad para tu evento. Propiedades curadas en destinos de élite, con personal de servicio dedicado, chef de autor y privacidad absoluta. Cada propiedad, seleccionada por su arquitectura, ubicación y atmósfera.</p>
+            <p class="service-desc-en t-en">Exclusive high-end residences reserved entirely for your event. Handpicked properties in elite destinations, with dedicated service staff, signature chef, and absolute privacy. Each estate selected for its architecture, location, and atmosphere. <a href="#contacto" class="service-cta">Request a property →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.1s">
+        <div class="service-row">
+          <span class="service-num">02</span>
+          <span class="service-name t-es">Transporte Privado</span>
+          <span class="service-en t-en">Private Transportation</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Flota de vehículos de lujo, vuelos en avión privado, traslados en yate y helicóptero. Cada desplazamiento, una extensión de la experiencia. Puntual, impecable, discreto. Coordinamos la logística completa de llegada y salida para todos los asistentes.</p>
+            <p class="service-desc-en t-en">Luxury vehicle fleet, private jet charters, yacht and helicopter transfers. Every journey is an extension of the experience — punctual, flawless, discreet. We handle full arrival and departure logistics for all guests. <a href="#contacto" class="service-cta">Arrange transfers →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.15s">
+        <div class="service-row">
+          <span class="service-num">03</span>
+          <span class="service-name t-es">Planificación de Viajes</span>
+          <span class="service-en t-en">Destination Planning</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Diseñamos experiencias en los destinos más codiciados del mundo. Desde la selección de la locación hasta los últimos detalles de itinerario, coordinamos cada aspecto del viaje. Ibiza, Mykonos, Riviera Maya, Amalfi — donde el lujo encuentra la intimidad.</p>
+            <p class="service-desc-en t-en">We craft experiences across the world's most coveted destinations. From venue scouting to final itinerary details, we coordinate every aspect of your journey. Ibiza, Mykonos, Riviera Maya, Amalfi — where luxury meets intimacy. <a href="#contacto" class="service-cta">Plan a destination →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.2s">
+        <div class="service-row">
+          <span class="service-num">04</span>
+          <span class="service-name t-es">Producción de Eventos</span>
+          <span class="service-en t-en">Event Production</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Concepto, dirección artística, escenografía personalizada, catering de autor y entretenimiento en vivo. Transformamos cualquier espacio en un universo propio. De la primera idea a la última copa, cada detalle orquestado con precisión.</p>
+            <p class="service-desc-en t-en">Concept, artistic direction, bespoke scenography, signature catering, and live entertainment. We transform any space into its own universe. From first idea to last toast, every detail orchestrated with precision. <a href="#contacto" class="service-cta">Start planning →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.25s">
+        <div class="service-row">
+          <span class="service-num">05</span>
+          <span class="service-name t-es">Concierge Privado</span>
+          <span class="service-en t-en">Private Concierge</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Acceso a lo inaccesible. Mesas en restaurantes de lista de espera imposible, entradas a eventos privados, reservas de experiencias únicas y servicios personalizados disponibles 24/7. Un punto de contacto, toda la exclusividad del mundo.</p>
+            <p class="service-desc-en t-en">Access to the inaccessible. Tables at impossible-to-book restaurants, invitations to private events, unique experience reservations, and bespoke services available 24/7. One point of contact, all the exclusivity in the world. <a href="#contacto" class="service-cta">Activate concierge →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item aos" role="listitem" style="animation-delay:0.3s">
+        <div class="service-row">
+          <span class="service-num">06</span>
+          <span class="service-name t-es">Enanos</span>
+          <span class="service-en t-en">Special Edition</span>
+          <span class="service-badge">Edición Especial</span>
+          <span class="service-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="service-expand">
+          <div class="service-expand-inner">
+            <p class="service-desc t-es">Nuestra edición más exclusiva y codiciada. Una experiencia singular, con participantes cuidadosamente seleccionados y un nivel de producción que no se repite. Cada detalle es único, cada momento, irrepetible. Solo para miembros verificados.</p>
+            <p class="service-desc-en t-en">Our most exclusive and coveted edition. A singular experience with carefully curated attendees and a production level that is never repeated. Each detail unique, each moment, unrepeatable. Available to verified members only. <a href="#contacto" class="service-cta">Express your interest →</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="sec-div" aria-hidden="true"></div>
+
+  <!-- ════════ QUÍMICA / PRIVÉ ════════ -->
+  <section id="quimica" aria-labelledby="quimica-h">
+
+    <div id="lock" role="region" aria-label="Zona de acceso restringido">
+      <div class="lock-panel">
+        <img src="logo eros.png" alt="EROS" class="lock-logo">
+        <h2 id="quimica-h" class="lock-heading">Privé <em>/ Chemistry</em></h2>
+        <p class="lock-sub">
+          <span class="t-en">Reserved for verified members only.</span>
+          <span class="t-es">Acceso exclusivo para miembros verificados.</span>
+        </p>
+        <form id="lock-form" novalidate>
+          <div class="lock-input-row" id="lock-row">
+            <input
+              type="password"
+              id="pass-input"
+              name="password"
+              placeholder="Access password"
+              autocomplete="current-password"
+              aria-label="Privé access password"
+            >
+            <button type="submit" id="pass-btn" aria-label="Enter">→</button>
+          </div>
+          <p id="pass-error" role="alert" aria-live="assertive">
+            <span class="t-en">Unauthorized access.</span>
+            <span class="t-es">Acceso no autorizado.</span>
+          </p>
+        </form>
+        <p class="lock-hint t-en">Verified members only</p>
+        <p class="lock-hint t-es">Solo miembros verificados</p>
+      </div>
+    </div>
+
+    <div id="chem-content" aria-live="polite">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="label">Privé / Chemistry</span>
+        <h2 class="chem-heading aos">
+          <span class="t-en">The <em>Elements</em> of the Evening</span>
+          <span class="t-es">Los <em>Elementos</em> de la Velada</span>
+        </h2>
+        <p style="font-family:'EB Garamond',serif; font-style:italic; color:var(--muted); margin-top:0.75rem; font-size:1.05rem; max-width:550px; margin-left:auto; margin-right:auto;" class="aos t-en" style="animation-delay:0.1s">
+          What makes each EROS experience unique.
+        </p>
+        <p style="font-family:'EB Garamond',serif; font-style:italic; color:var(--muted); margin-top:0.75rem; font-size:1.05rem; max-width:550px; margin-left:auto; margin-right:auto;" class="aos t-es" style="animation-delay:0.1s">
+          Lo que hace única a cada experiencia EROS.
+        </p>
+      </div>
+      <div class="chem-cards">
+        <div class="chem-card">
+          <div class="chem-num">I</div>
+          <h3 class="chem-title t-es">Fragancias Sensoriales</h3>
+          <h3 class="chem-title t-en">Sensory Fragrances</h3>
+          <p class="chem-body t-es">Selección exclusiva de aromas diseñados para intensificar los sentidos y crear el ambiente perfecto para cada velada. Cada fragancia es curada para el tipo de evento específico.</p>
+          <p class="chem-body t-en">An exclusive selection of scents designed to heighten the senses and set the perfect mood for each evening.</p>
+        </div>
+        <div class="chem-card">
+          <div class="chem-num">II</div>
+          <h3 class="chem-title t-es">Dinámicas de Grupo</h3>
+          <h3 class="chem-title t-en">Group Dynamics</h3>
+          <p class="chem-body t-es">Actividades y dinámicas diseñadas por nuestro equipo para crear conexiones genuinas entre los participantes. Cada interacción es intencionada.</p>
+          <p class="chem-body t-en">Activities and dynamics designed to create genuine connections among participants. Every interaction is intentional.</p>
+        </div>
+        <div class="chem-card">
+          <div class="chem-num">III</div>
+          <h3 class="chem-title t-es">Protocolo de Consenso</h3>
+          <h3 class="chem-title t-en">Consent Protocol</h3>
+          <p class="chem-body t-es">Nuestro sistema garantiza que cada participante se sienta cómodo, respetado y en control en todo momento. La discreción y el respeto son no negociables.</p>
+          <p class="chem-body t-en">Our system ensures every participant feels comfortable, respected, and in control at all times. Discretion and respect are non-negotiable.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="sec-div" aria-hidden="true"></div>
+
+  <!-- ════════ CONTACTO ════════ -->
+  <section id="contacto" aria-labelledby="contacto-h">
+    <div class="contacto-grid">
+
+      <div>
+        <span class="label aos t-en">Enquiries</span>
+        <span class="label aos t-es">Reservas</span>
+        <h2 id="contacto-h" class="contact-heading aos" style="animation-delay:0.1s">
+          <span class="t-en">Begin Your<br><em>Experience</em></span>
+          <span class="t-es">Comience su<br><em>Experiencia</em></span>
+        </h2>
+        <p class="contact-body aos t-en" style="animation-delay:0.2s">Each EROS experience is private, personalized, and unique. Complete the form and our team will be in touch to design every detail together.</p>
+        <p class="contact-body aos t-es" style="animation-delay:0.2s">Cada experiencia EROS es privada, personalizada y única. Complete el formulario y nuestro equipo se pondrá en contacto para diseñar juntos cada detalle.</p>
+
+        <div class="contact-items aos" style="animation-delay:0.3s">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Email</strong>
+              reservas@eros-events.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong><span class="t-en">Location</span><span class="t-es">Ubicación</span></strong>
+              <span class="t-en">Confidential — Revealed 48h before</span>
+              <span class="t-es">Confidencial — Revelada 48h antes</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong><span class="t-en">Privacy</span><span class="t-es">Privacidad</span></strong>
+              <span class="t-en">Absolute discretion guaranteed</span>
+              <span class="t-es">Discreción absoluta garantizada</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="contact-note aos t-en" style="animation-delay:0.4s">
+          For privacy, the exact location is shared only with confirmed attendees 48 hours prior to each event.
+        </p>
+        <p class="contact-note aos t-es" style="animation-delay:0.4s">
+          Por privacidad, la ubicación exacta se comunica únicamente a los asistentes confirmados 48 horas antes de cada evento.
+        </p>
+      </div>
+
+      <div class="aos" style="animation-delay:0.15s">
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="fgroup">
+              <label for="cf-name"><span class="t-en">Name</span><span class="t-es">Nombre</span></label>
+              <input type="text" id="cf-name" name="name" required autocomplete="name">
+            </div>
+            <div class="fgroup">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="fgroup">
+            <label for="cf-phone"><span class="t-en">Phone <span style="opacity:0.5;font-size:0.55rem;">(optional)</span></span><span class="t-es">Teléfono <span style="opacity:0.5;font-size:0.55rem;">(opcional)</span></span></label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="fgroup">
+            <label for="cf-event"><span class="t-en">Experience of interest</span><span class="t-es">Experiencia de interés</span></label>
+            <select id="cf-event" name="event">
+              <option value="" class="t-en">Select experience</option>
+              <option value="villas"><span class="t-en">Private Estates</span><span class="t-es">Villas Privadas</span></option>
+              <option value="transporte"><span class="t-en">Private Transportation</span><span class="t-es">Transporte Privado</span></option>
+              <option value="viajes"><span class="t-en">Destination Planning</span><span class="t-es">Planificación de Viajes</span></option>
+              <option value="produccion"><span class="t-en">Event Production</span><span class="t-es">Producción de Eventos</span></option>
+              <option value="concierge"><span class="t-en">Private Concierge</span><span class="t-es">Concierge Privado</span></option>
+              <option value="enanos">Special Edition</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label for="cf-msg"><span class="t-en">Message</span><span class="t-es">Mensaje</span></label>
+            <textarea id="cf-msg" name="message" id="cf-msg-ta" placeholder="Tell us about the experience you seek..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="fsub">
+            <span class="t-en">Submit Enquiry</span>
+            <span class="t-es">Enviar Solicitud</span>
+          </button>
+          <div id="form-ok">
+            <span class="t-en">✦ Request received. Our team will be in touch within 24 hours.</span>
+            <span class="t-es">✦ Solicitud recibida. Nuestro equipo se pondrá en contacto en las próximas 24 horas.</span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer role="contentinfo">
+    <hr class="footer-rule" aria-hidden="true">
+    <div class="footer-top" style="margin-top:2rem;">
+      <a href="#hero" class="footer-logo" aria-label="EROS — inicio">
+        <img src="logo eros.png" alt="EROS">
+      </a>
+      <ul class="footer-nav">
+        <li><a href="#nosotros"><span class="t-en">The House</span><span class="t-es">La Maison</span></a></li>
+        <li><a href="#servicios"><span class="t-en">Services</span><span class="t-es">Servicios</span></a></li>
+        <li><a href="#quimica">Privé</a></li>
+        <li><a href="#contacto"><span class="t-en">Enquiries</span><span class="t-es">Reservas</span></a></li>
+      </ul>
+      <div class="footer-copy">
+        <span class="t-en">© 2026 EROS. All rights reserved.</span>
+        <span class="t-es">© 2026 EROS. Todos los derechos reservados.</span>
+        <strong>Adults 18+ only · Solo mayores de 18</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════ JS ════════ -->
+  <script>
+    // ── Language toggle ───────────────────────────────
+    function setLang(lang) {
+      document.documentElement.dataset.lang = lang;
+      document.documentElement.lang = lang;
+      localStorage.setItem('eros_lang', lang);
+      // Toggle active label in button
+      document.getElementById('lang-en-lbl').classList.toggle('lang-active', lang === 'en');
+      document.getElementById('lang-es-lbl').classList.toggle('lang-active', lang === 'es');
+      // Update form placeholder
+      const ta = document.getElementById('cf-msg');
+      if (ta) ta.placeholder = lang === 'en'
+        ? 'Tell us about the experience you seek...'
+        : 'Cuéntenos sobre la experiencia que busca...';
+    }
+    // Init language
+    const _initLang = localStorage.getItem('eros_lang') || 'en';
+    setLang(_initLang);
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      setLang(document.documentElement.dataset.lang === 'en' ? 'es' : 'en');
+    });
+
+    // ── Custom cursor ─────────────────────────────────
+    const ring = document.getElementById('cursor-ring');
+    const dot  = document.getElementById('cursor-dot');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+    });
+
+    (function loop() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+
+    document.querySelectorAll('a, button, .service-item').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // ── Nav scroll state ──────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Hamburger ─────────────────────────────────────
+    const ham     = document.getElementById('nav-ham');
+    const navList = document.getElementById('nav-links');
+    ham.addEventListener('click', () => {
+      const open = navList.classList.toggle('open');
+      ham.setAttribute('aria-expanded', open);
+    });
+    navList.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navList.classList.remove('open');
+        ham.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // ── AOS (Intersection Observer) ───────────────────
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.aos').forEach(el => obs.observe(el));
+
+    // ── Service accordion ─────────────────────────────
+    document.querySelectorAll('.service-item').forEach(item => {
+      item.querySelector('.service-row').addEventListener('click', () => {
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.service-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Química / Privé password ──────────────────────
+    const PASS = 'erosl1bre';
+
+    function unlockPrivé() {
+      sessionStorage.setItem('prive_ok', '1');
+      const lockEl   = document.getElementById('lock');
+      const contentEl = document.getElementById('chem-content');
+      lockEl.style.opacity   = '0';
+      lockEl.style.transform = 'scale(1.03)';
+      setTimeout(() => {
+        lockEl.style.display = 'none';
+        contentEl.style.display = 'block';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          contentEl.style.opacity = '1';
+          contentEl.querySelectorAll('.aos').forEach(el => {
+            obs.observe(el);
+          });
+        }));
+      }, 700);
+    }
+
+    document.getElementById('lock-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const val = document.getElementById('pass-input').value;
+      const row = document.getElementById('lock-row');
+      const err = document.getElementById('pass-error');
+
+      if (val === PASS) {
+        unlockPrivé();
+      } else {
+        row.classList.remove('shake');
+        void row.offsetWidth;
+        row.classList.add('shake');
+        err.style.display = 'block';
+        document.getElementById('pass-input').value = '';
+        document.getElementById('pass-input').focus();
+        setTimeout(() => row.classList.remove('shake'), 550);
+      }
+    });
+
+    if (sessionStorage.getItem('prive_ok') === '1') {
+      document.getElementById('lock').style.display = 'none';
+      const c = document.getElementById('chem-content');
+      c.style.display  = 'block';
+      c.style.opacity  = '1';
+    }
+
+    // ── Contact form ──────────────────────────────────
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = document.getElementById('fsub');
+      const lang = document.documentElement.dataset.lang;
+      btn.innerHTML = lang === 'en' ? 'Sending...' : 'Enviando...';
+      btn.disabled = true;
+      setTimeout(() => {
+        e.target.reset();
+        btn.innerHTML = lang === 'en'
+          ? '<span class="t-en">Submit Enquiry</span><span class="t-es">Enviar Solicitud</span>'
+          : '<span class="t-en">Submit Enquiry</span><span class="t-es">Enviar Solicitud</span>';
+        btn.disabled = false;
+        const ok = document.getElementById('form-ok');
+        ok.style.display = 'block';
+        setTimeout(() => { ok.style.display = 'none'; }, 7000);
+      }, 1500);
+    });
+
+    // ── Nav active link ────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navAs    = document.querySelectorAll('.nav-links a');
+    const secObs   = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAs.forEach(a => {
+            const match = a.getAttribute('href') === '#' + e.target.id;
+            a.style.color = match ? 'var(--gold)' : '';
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => secObs.observe(s));
+  </script>
+
+</body>
+</html>

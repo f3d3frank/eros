@@ -1,0 +1,9 @@
+{
+  "name": "eros-libre",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "puppeteer": "^24.40.0"
+  }
+}
