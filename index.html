@@ -40,15 +40,15 @@
     html {
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: #C9A87C #0A0A0A;
+      scrollbar-color: #9A6D2E #F7F2EB;
       cursor: none;
     }
     ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #0A0A0A; }
-    ::-webkit-scrollbar-thumb { background: #C9A87C; }
+    ::-webkit-scrollbar-track { background: #F7F2EB; }
+    ::-webkit-scrollbar-thumb { background: #9A6D2E; }
     body {
-      background: #0A0A0A;
-      color: #EEE8DE;
+      background: #F7F2EB;
+      color: #1A130B;
       font-family: 'EB Garamond', Georgia, serif;
       font-weight: 400;
       line-height: 1.75;
@@ -59,21 +59,21 @@
 
     /* ── VARIABLES ──────────────────────────────────────────────── */
     :root {
-      --onyx:       #0A0A0A;
-      --obsidian:   #0E0E0E;
-      --surface:    #131313;
-      --elev:       #1B1B1B;
-      --float:      #242424;
-      --gold:       #C9A87C;
-      --gold-hi:    #E2CC9A;
-      --gold-deep:  #8B6C42;
-      --gold-pale:  #F0E4CC;
-      --gold-glow:  rgba(201,168,124,0.22);
-      --text:       #EEE8DE;
-      --muted:      #8A7A68;
-      --dim:        #4A4038;
-      --border:     rgba(201,168,124,0.15);
-      --border-hi:  rgba(201,168,124,0.45);
+      --onyx:       #F7F2EB;   /* warm ivory — main background */
+      --obsidian:   #F0E8DC;
+      --surface:    #FFFFFF;   /* pure white for card surfaces */
+      --elev:       #EBE2D2;   /* elevated warm sand */
+      --float:      #E2D7C5;
+      --gold:       #9A6D2E;   /* deep amber gold — readable on light */
+      --gold-hi:    #C9A87C;   /* decorative lighter gold */
+      --gold-deep:  #6B4A18;
+      --gold-pale:  #E5D0A8;
+      --gold-glow:  rgba(154,109,46,0.14);
+      --text:       #1A130B;   /* deep warm charcoal */
+      --muted:      #5C4834;   /* warm medium brown */
+      --dim:        #8A7060;   /* secondary warm brown */
+      --border:     rgba(154,109,46,0.2);
+      --border-hi:  rgba(154,109,46,0.52);
       --sp-sec:     clamp(5.5rem, 11vw, 10rem);
       --sp-h:       clamp(2rem, 6vw, 5.5rem);
       --fs-display: clamp(3rem, 7vw, 6.5rem);
@@ -239,10 +239,10 @@
       animation: nav-in 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;
     }
     #nav.scrolled {
-      background: rgba(10,10,10,0.92);
+      background: rgba(14,11,8,0.93);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-bottom: 0.5px solid var(--border);
+      border-bottom: 0.5px solid rgba(201,168,124,0.18);
     }
     .nav-logo {
       display: flex;
@@ -468,7 +468,7 @@
     #manifesto::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,124,0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(154,109,46,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
     .manifesto-quote {
@@ -551,8 +551,8 @@
     .nosotros-img-overlay {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right, transparent 60%, var(--onyx) 100%),
-        linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 40%);
+        linear-gradient(to right, transparent 55%, var(--onyx) 100%),
+        linear-gradient(to top, rgba(247,242,235,0.35) 0%, transparent 40%);
     }
     .nosotros-text-col {
       padding: clamp(3rem,6vw,7rem) clamp(2.5rem,5vw,6rem);
@@ -814,7 +814,23 @@
        QUÍMICA / PRIVÉ
     ═══════════════════════════════════════════════════════ */
     #quimica {
-      background: var(--onyx);
+      /* Dark section — override all vars back to dark palette */
+      --onyx:      #0A0A0A;
+      --obsidian:  #0E0E0E;
+      --surface:   #131313;
+      --elev:      #1B1B1B;
+      --float:     #242424;
+      --gold:      #C9A87C;
+      --gold-hi:   #E2CC9A;
+      --gold-deep: #8B6C42;
+      --gold-pale: #F0E4CC;
+      --gold-glow: rgba(201,168,124,0.22);
+      --text:      #EEE8DE;
+      --muted:     #8A7A68;
+      --dim:       #4A4038;
+      --border:    rgba(201,168,124,0.15);
+      --border-hi: rgba(201,168,124,0.45);
+      background: #0A0A0A;
       position: relative;
       min-height: 75vh;
       display: flex;
@@ -1127,12 +1143,12 @@
       background-position: right 1rem center;
       padding-right: 2.5rem;
     }
-    .fgroup select option { background: #1B1B1B; }
+    .fgroup select option { background: var(--surface); color: var(--text); }
     .fgroup input:focus,
     .fgroup select:focus,
     .fgroup textarea:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,168,124,0.07);
+      box-shadow: 0 0 0 3px var(--gold-glow);
     }
     .fgroup input::placeholder,
     .fgroup textarea::placeholder { color: var(--dim); font-style: italic; }
@@ -1178,7 +1194,14 @@
        FOOTER
     ═══════════════════════════════════════════════════════ */
     footer {
-      background: var(--onyx);
+      /* Dark section */
+      --text:      #EEE8DE;
+      --muted:     #8A7A68;
+      --dim:       #4A4038;
+      --gold:      #C9A87C;
+      --border:    rgba(201,168,124,0.15);
+      --border-hi: rgba(201,168,124,0.45);
+      background: #0A0A0A;
       padding: 2.75rem clamp(1.5rem,5vw,4rem);
     }
     .footer-top {
