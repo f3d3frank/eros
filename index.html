@@ -1448,6 +1448,9 @@
     .lb-info {
       margin-top: 1.5rem;
       text-align: center;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .lb-city-name {
       font-family: 'Cormorant Garamond', serif;
@@ -1460,8 +1463,21 @@
       font-family: 'EB Garamond', serif;
       font-size: 0.95rem;
       font-style: italic;
-      color: var(--muted);
+      color: var(--gold);
       margin-top: 0.2rem;
+      letter-spacing: 0.08em;
+    }
+    .lb-divider {
+      width: 32px; height: 0.5px;
+      background: var(--border);
+      margin: 0.9rem auto;
+    }
+    .lb-desc {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
     }
     .lb-close {
       position: fixed; top: 1.5rem; right: 1.5rem; z-index: 501;
@@ -1801,7 +1817,9 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.05s"
            data-category="americas"
            data-city-en="New York City" data-city-es="Nueva York"
-           data-venue-en="Rooftop Soirée · Manhattan" data-venue-es="Velada en Azotea · Manhattan">
+           data-venue-en="Rooftop Soirée · Manhattan" data-venue-es="Velada en Azotea · Manhattan"
+           data-desc-en="An intimate gathering of sixty guests above the Manhattan skyline. Curated cocktails, live jazz, and the city's lights stretching endlessly below — a night crafted entirely around your vision."
+           data-desc-es="Una reunión íntima de sesenta invitados sobre el skyline de Manhattan. Cócteles seleccionados, jazz en vivo y las luces de la ciudad extendiéndose infinitamente bajo nuestros pies — una noche diseñada enteramente según tu visión.">
         <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80&fit=crop&auto=format" alt="New York City" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region t-en">Americas</div>
@@ -1819,7 +1837,9 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.1s"
            data-category="europe"
            data-city-en="Paris" data-city-es="París"
-           data-venue-en="Château Private Gala" data-venue-es="Gala Privada en Château">
+           data-venue-en="Château Private Gala" data-venue-es="Gala Privada en Château"
+           data-desc-en="A candlelit gala in a secluded 18th-century château on the outskirts of Île-de-France. Private chef with a Michelin pedigree, curated wine selection, and a midnight champagne terrace under open skies."
+           data-desc-es="Una gala a la luz de las velas en un château del siglo XVIII en las afueras de Île-de-France. Chef privado con estrella Michelin, selección de vinos curada y una terraza de champagne a medianoche bajo el cielo abierto.">
         <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80&fit=crop&auto=format" alt="Paris" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region">Europe</div>
@@ -1836,8 +1856,10 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.15s"
            data-category="europe"
            data-city-en="Ibiza" data-city-es="Ibiza"
-           data-venue-en="Clifftop Villa · Es Vedrà" data-venue-es="Villa en Acantilado · Es Vedrà">
-        <img src="https://images.unsplash.com/photo-1559827291-72b66262c96e?w=800&q=80&fit=crop&auto=format" alt="Ibiza" loading="lazy">
+           data-venue-en="Clifftop Villa · Es Vedrà" data-venue-es="Villa en Acantilado · Es Vedrà"
+           data-desc-en="A private clifftop villa overlooking the mystical silhouette of Es Vedrà. Sunset ceremony, open bar with artisan cocktails, and an exclusive DJ set that carried the night through until dawn."
+           data-desc-es="Una villa privada en acantilado con vistas a la silueta mística de Es Vedrà. Ceremonia al atardecer, barra libre con cócteles artesanos y un DJ set exclusivo que prolongó la noche hasta el amanecer.">
+        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80&fit=crop&auto=format" alt="Ibiza" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region">Europe</div>
           <div class="portfolio-card-city">Ibiza</div>
@@ -1852,7 +1874,9 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.2s"
            data-category="europe"
            data-city-en="Barcelona" data-city-es="Barcelona"
-           data-venue-en="Rooftop Terrace · Eixample" data-venue-es="Terraza Privada · Eixample">
+           data-venue-en="Rooftop Terrace · Eixample" data-venue-es="Terraza Privada · Eixample"
+           data-desc-en="An exclusive rooftop soirée above Barcelona's modernist skyline. Catalan delicacies, natural wine selection by a private sommelier, and the city's golden lights below — intimate, unhurried, entirely yours."
+           data-desc-es="Una velada exclusiva en azotea sobre el skyline modernista de Barcelona. Delicias catalanas, selección de vinos naturales con sumiller privado y las luces doradas de la ciudad abajo — íntima, sin prisas, completamente tuya.">
         <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80&fit=crop&auto=format" alt="Barcelona" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region">Europe</div>
@@ -1868,13 +1892,15 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.25s"
            data-category="europe"
            data-city-en="Madrid" data-city-es="Madrid"
-           data-venue-en="Gran Palacio · Centro" data-venue-es="Gran Palacio · Centro">
-        <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800&q=80&fit=crop&auto=format" alt="Madrid" loading="lazy">
+           data-venue-en="Palacete Privado · Salamanca" data-venue-es="Palacete Privado · Salamanca"
+           data-desc-en="A private palacete in Madrid's most exclusive residential quarter. Live flamenco performance, sommelier-curated tastings across five cellars, and an evening designed with absolute confidentiality from first contact."
+           data-desc-es="Un palacete privado en el barrio residencial más exclusivo de Madrid. Espectáculo flamenco en vivo, catas de cinco bodegas con sumiller y una velada diseñada con absoluta confidencialidad desde el primer contacto.">
+        <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80&fit=crop&auto=format" alt="Madrid" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region">Europe</div>
           <div class="portfolio-card-city">Madrid</div>
-          <div class="portfolio-card-venue t-en">Gran Palacio · Centro</div>
-          <div class="portfolio-card-venue t-es">Gran Palacio · Centro</div>
+          <div class="portfolio-card-venue t-en">Palacete Privado · Salamanca</div>
+          <div class="portfolio-card-venue t-es">Palacete Privado · Salamanca</div>
         </div>
         <div class="portfolio-card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -1884,7 +1910,9 @@
       <div class="portfolio-card aos" role="listitem" style="animation-delay:0.3s"
            data-category="europe"
            data-city-en="Monaco" data-city-es="Mónaco"
-           data-venue-en="Yacht Charter · Port Hercule" data-venue-es="Yate Privado · Puerto Hércules">
+           data-venue-en="Yacht Charter · Port Hercule" data-venue-es="Yate Privado · Puerto Hércules"
+           data-desc-en="A superyacht charter through the Principality's crystalline waters. Private chef on board, optional diving excursion at sunrise, and a starlit deck dinner for twelve — the Mediterranean at its most uncompromising."
+           data-desc-es="Un charter de superyate por las aguas cristalinas del Principado. Chef privado a bordo, excursión de buceo opcional al amanecer y cena en cubierta bajo las estrellas para doce personas — el Mediterráneo en su máxima expresión.">
         <img src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=800&q=80&fit=crop&auto=format" alt="Monaco" loading="lazy">
         <div class="portfolio-card-overlay">
           <div class="portfolio-card-region">Europe</div>
@@ -1911,6 +1939,8 @@
       <div class="lb-info">
         <div class="lb-city-name" id="lb-city"></div>
         <div class="lb-venue-name" id="lb-venue"></div>
+        <div class="lb-divider"></div>
+        <div class="lb-desc" id="lb-desc"></div>
       </div>
     </div>
   </div>
@@ -2296,13 +2326,16 @@
       lbCurrentIndex = index;
       const card = cards[index];
       const lang = document.documentElement.dataset.lang || 'en';
-      const img  = card.querySelector('img');
-      const city  = card.dataset['city' + (lang === 'es' ? 'Es' : 'En')] || card.dataset.cityEn;
-      const venue = card.dataset['venue' + (lang === 'es' ? 'Es' : 'En')] || card.dataset.venueEn;
+      const suffix = lang === 'es' ? 'Es' : 'En';
+      const img   = card.querySelector('img');
+      const city  = card.dataset['city'  + suffix] || card.dataset.cityEn;
+      const venue = card.dataset['venue' + suffix] || card.dataset.venueEn;
+      const desc  = card.dataset['desc'  + suffix] || card.dataset.descEn || '';
       document.getElementById('lb-img').src  = img.src;
       document.getElementById('lb-img').alt  = img.alt;
       document.getElementById('lb-city').textContent  = city;
       document.getElementById('lb-venue').textContent = venue;
+      document.getElementById('lb-desc').textContent  = desc;
       document.getElementById('portfolio-lb').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
